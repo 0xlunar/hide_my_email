@@ -79,13 +79,13 @@ impl ICloudClient {
     }
 }
 impl HideMyEmailManager {
-    pub fn from(icloud: ICloudClient) -> anyhow::Result<HideMyEmailManager> {
+    pub fn from(icloud: ICloudClient) -> HideMyEmailManager {
         let cookie = icloud.cookies.iter().map(|c| format!("{}={}", c.name, c.value)).collect::<Vec<String>>().join("; ");
 
-        Ok(HideMyEmailManager {
+        HideMyEmailManager {
             icloud,
             cookie,
-        })
+        }
     }
 
     fn base_url(&self) -> Option<String> {
@@ -299,7 +299,7 @@ mod tests {
 
         let mut icloud = ICloudClient::new(&cookies);
         icloud.validate().await.unwrap();
-        let manager = HideMyEmailManager::from(icloud).unwrap();
+        let manager = HideMyEmailManager::from(icloud);
 
         let res = manager.generate_and_claim("Rust Test", "").await;
         assert_eq!(res.is_ok(), true);
@@ -312,7 +312,7 @@ mod tests {
 
         let mut icloud = ICloudClient::new(&cookies);
         icloud.validate().await.unwrap();
-        let manager = HideMyEmailManager::from(icloud).unwrap();
+        let manager = HideMyEmailManager::from(icloud);
 
         let res = manager.list().await;
 
