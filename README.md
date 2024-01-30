@@ -5,6 +5,9 @@ Rust implementation of Apple's Hide my email service
 - Apple ID
 - iCloud+ Subscription
 
+## Installation
+`cargo add hide_my_email`
+
 ## Obtaining Apple Cookies
 1. Login to [iCloud](https://www.icloud.com/)
 2. Open the Dot Menu *(top right, next to your photo)*
