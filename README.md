@@ -31,7 +31,7 @@ async fn main() -> anyhow::Result<()> {
    let mut icloud = ICloudClient::new(&cookies);
    let _ = icloud.validate().await?;
    
-   let manager = HideMyEmailManager::from(icloud).unwrap();
+   let manager = HideMyEmailManager::from(icloud);
 
    let email = manager.generate().await?;
    let _ = manager.claim(&email, "RustLang", "").await?;
