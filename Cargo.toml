@@ -1,6 +1,6 @@
 [package]
 name = "hide_my_email"
-version = "0.1.2"
+version = "0.1.3"
 edition = "2021"
 description = "iCloud Hide My Email implementation in Rust"
 license = "WTFPL"

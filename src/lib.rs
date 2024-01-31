@@ -191,8 +191,8 @@ impl Cookie {
     // Only supports name=value;
     fn from_str(s: &str) -> Result<Vec<Self>, ParseCookieError> {
         let mut cookies = Vec::new();
-        let splt = s.split("; ");
-        for cookie in splt {
+        let mut splitted = s.split("; ");
+        while let Some(cookie) = splitted.next() {
             match cookie.split_once("=") {
                 Some((k, v)) => {
                     cookies.push(Self {
